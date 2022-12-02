@@ -5,7 +5,7 @@ static const String routeName = 'Home_Screen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      appBar: AppBar(title: Text('hey'),),
     );
   }
 }
