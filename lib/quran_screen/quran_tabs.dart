@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_c7/mytheme.dart';
-import 'package:flutter_app_c7/text_sura.dart';
+import 'package:flutter_app_c7/quran_screen/text_sura.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class Home_Screen extends StatelessWidget {
-  static const String routeName = 'Home_Screen';
+class Quran_Tabs extends StatelessWidget {
   List<String> SuraName = [
     "الفاتحه",
     "البقرة",
@@ -123,49 +123,35 @@ class Home_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        Image.asset(
-          'assets/images/main_background.png',
-          height: double.infinity,
-          width: double.infinity,
-          fit: BoxFit.fill,
+        Center(child: Image.asset('assets/images/logo.png')),
+        Divider(
+          color: Theme.of(context).primaryColor,
+          thickness: 3,
         ),
-        Scaffold(
-          appBar: AppBar(
-            title: Text('Islamy', style: Theme.of(context).textTheme.headline1),
-            centerTitle: true,
-            elevation: 0,
-          ),
-          body: Column(
-            children: [
-              Center(child: Image.asset('assets/images/logo.png')),
-              Divider(
-                color: MyThemeData.primaryLight,
-                thickness: 3,
-              ),
-              Text(
-                'Sura Name',
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              Divider(
-                color: MyThemeData.primaryLight,
-                thickness: 3,
-              ),
-              Expanded(
-                child: ListView.separated(itemBuilder: (context,index){
-                  return Text_Sura(name: SuraName[index]);
-                }, separatorBuilder: (context , index){
-                  return Divider(
-                    color: MyThemeData.primaryLight,
-                    thickness: 3,
-                  );
-                }, itemCount: SuraName.length),
-              )
-            ],
-          ),
+        Text(
+          AppLocalizations.of(context)!.suraName,
+          style: Theme.of(context).textTheme.headline2,
+        ),
+        Divider(
+          color: Theme.of(context).primaryColor,
+          thickness: 3,
+        ),
+        Expanded(
+          child: ListView.separated(
+              itemBuilder: (context, index) {
+                return Text_Sura(name: SuraName[index],index: index,);
+              },
+              separatorBuilder: (context, index) {
+                return Divider(
+                  color: Theme.of(context).primaryColor,
+                  thickness: 3,
+                );
+              },
+              itemCount: SuraName.length),
         )
       ],
-    );
+    ) ;
   }
 }
