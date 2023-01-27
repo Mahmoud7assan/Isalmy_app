@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_app_c7/hadeth_screen/hadeth_tabs.dart';
 import 'package:flutter_app_c7/mytheme.dart';
-import 'package:flutter_app_c7/quran_screen/text_api.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SuraDetailsScreen extends StatefulWidget {
-  static String routeName = 'SuraDetails';
-
-  @override
-  _SuraDetailsScreenState createState() => _SuraDetailsScreenState();
-}
-
-class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
-  List<String> versec = [];
+class Hadeth_Text extends StatelessWidget {
+  static const String routeName = 'HadethName';
 
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute.of(context)?.settings.arguments as ScreenArgs;
-    loadFile(args.index);
+    var args = ModalRoute.of(context)?.settings.arguments as Hadeth;
     return Stack(children: [
       Image.asset(
         'assets/images/main_background.png',
@@ -43,7 +34,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                args.title,
+                '${args.title}',
                 style: Theme.of(context).textTheme.headline1,
                 textAlign: TextAlign.center,
               ),
@@ -56,31 +47,27 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
               Expanded(
                 child: ListView.separated(
                     itemBuilder: (context, index) {
-                      return Text(
-                        versec[index],
-                        style: Theme.of(context).textTheme.headline2,
-                        textAlign: TextAlign.center,
+                      return Container(
+                        padding: EdgeInsets.all(8),
+                        child: Text(
+                          args.content[index],
+                          style: Theme.of(context).textTheme.subtitle2,
+                          textAlign: TextAlign.center,
+                        ),
                       );
                     },
                     separatorBuilder: (context, index) {
                       return Divider(
                         color: Theme.of(context).primaryColor,
-                        thickness: 3,
+                        thickness: 2,
                       );
                     },
-                    itemCount: versec.length),
+                    itemCount: args.content.length),
               ),
             ],
           ),
         ),
       )
     ]);
-  }
-
-  void loadFile(int index) async {
-    String lines = await rootBundle.loadString('assets/files/${index+1}.txt');
-    List<String> fileContent = lines.split('\n');
-    versec = fileContent;
-    setState(() {});
   }
 }

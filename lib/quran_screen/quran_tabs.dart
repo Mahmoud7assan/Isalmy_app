@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_c7/model/sourcesResponse.dart';
 import 'package:flutter_app_c7/mytheme.dart';
+import 'package:flutter_app_c7/quran_screen/sura_api.dart';
 import 'package:flutter_app_c7/quran_screen/text_sura.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Quran_Tabs extends StatelessWidget {
+
+
   List<String> SuraName = [
     "الفاتحه",
     "البقرة",
@@ -139,19 +143,9 @@ class Quran_Tabs extends StatelessWidget {
           thickness: 3,
         ),
         Expanded(
-          child: ListView.separated(
-              itemBuilder: (context, index) {
-                return Text_Sura(name: SuraName[index],index: index,);
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  color: Theme.of(context).primaryColor,
-                  thickness: 3,
-                );
-              },
-              itemCount: SuraName.length),
+          child: SuraApi()
         )
       ],
-    ) ;
+    );
   }
 }

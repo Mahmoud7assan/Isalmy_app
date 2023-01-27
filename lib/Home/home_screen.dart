@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_c7/hadeth_screen/hadeth_tabs.dart';
 import 'package:flutter_app_c7/providers/AppConfig.dart';
 import 'package:flutter_app_c7/quran_screen/quran_tabs.dart';
+import 'package:flutter_app_c7/quran_screen/sura_api.dart';
 import 'package:flutter_app_c7/radio_screen/radio_tabs.dart';
 import 'package:flutter_app_c7/sebha_screen/tasbeh_tabs.dart';
 import 'package:flutter_app_c7/settings_screen/settings.dart';
